@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+日报详情
+{% endblock %}
+
+{% block content %}
+
+<h1>日报详情</h1>
+
+<p><strong>项目名称：</strong>{{ report.project_name }}</p>
+
+<p><strong>日期：</strong>{{ report.date_display }}</p>
+
+<p><strong>创建时间：</strong>{{ report.created_at }}</p>
+
+<h2>原始输入</h2>
+
+<pre>{{ report.original_input }}</pre>
+
+<h2>AI生成内容</h2>
+
+<pre>{{ report.ai_content }}</pre>
+
+<p>
+    <a href="/download/{{ report.id }}">
+        下载 DOCX
+    </a>
+</p>
+
+<p>
+    <a href="/">
+        返回首页
+    </a>
+</p>
+
+{% endblock %}

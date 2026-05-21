@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+日报列表 - 施工日报生成器
+{% endblock %}
+
+{% block content %}
+
+<h1>历史日报列表</h1>
+
+{% if reports %}
+
+<table>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>日期</th>
+            <th>项目名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for report in reports %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ report.date_display }}</td>
+            <td>{{ report.project_name }}</td>
+            <td>{{ report.created_at }}</td>
+            <td>
+                <a href="/report/{{ report.id }}">查看详情</a>
+
+                <a href="/download/{{ report.id }}">
+                    下载DOCX
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<p>暂无日报记录</p>
+
+<pre>请使用 CLI 模式生成日报：
+python main.py</pre>
+
+{% endif %}
+
+{% endblock %}
